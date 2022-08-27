@@ -217,7 +217,7 @@ function Header(lev, s, attr)
 end
 
 function BlockQuote(s)
-  return '<pre><code>\n' .. s .. '\n</code></pre>'
+  return '<code>\n' .. s .. '\n</code>'
 end
 
 function HorizontalRule()
@@ -225,7 +225,7 @@ function HorizontalRule()
 end
 
 function LineBlock(ls)
-  return '<pre><code>' .. table.concat(ls, '\n') .. '</code></pre>'
+  return '<code>' .. table.concat(ls, '\n') .. '</code>'
 end
 
 function CodeBlock(s, attr)
@@ -236,7 +236,7 @@ function CodeBlock(s, attr)
     return '<img src="data:' .. image_mime_type .. ';base64,' .. img .. '"/>'
   -- otherwise treat as code (one could pipe through a highlighter)
   else
-    return '<pre><code>\n' .. escape(s) .. '\n</code></pre>'
+    return '<code>\n' .. escape(s) .. '</code>'
   end
 end
 
