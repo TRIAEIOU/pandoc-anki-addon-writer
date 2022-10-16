@@ -148,7 +148,7 @@ end
 
 function Image(s, src, tit, attr)
   return '<img src="' .. escape(src,true) .. '" title="' ..
-         escape(tit,true) .. '"/>'
+         escape(tit,true) .. '" ' .. attributes(attr) ..'/>'
 end
 
 function Code(s, attr)
@@ -282,12 +282,10 @@ end
 
 function CaptionedImage(src, tit, caption, attr)
   if #caption == 0 then
-    return '<img src="' .. escape(src,true) .. '" id="' .. attr.id ..
-      '"/><br><br>'
+    return '<img src="' .. escape(src,true) .. '" ' .. attributes(attr) .. '"/><br><br>'
   else
     local ecaption = escape(caption)
-    return '<img src="' .. escape(src,true) ..
-        '" id="' .. attr.id .. '" alt="' .. ecaption  .. '"/>'
+    return '<img src="' .. escape(src,true) .. '" alt="' .. ecaption  .. '" ' .. attributes(attr) .. '/>'
   end
 end
 
