@@ -27,12 +27,18 @@ Writer.Inline.Emph = function (nd)
   return "<i>" .. Writer.Inlines(nd.content) .. "</i>"
 end
 
+Writer.Inline.Cite = function (nd)
+  return '"' .. Writer.Inlines(nd.content) .. '"'
+end
+
 Writer.Inline.Code = function (nd)
   return "<code>" .. escape(nd.text, false) .. "</code>"
 end
 
 Writer.Block.CodeBlock = function (nd)
-  return "<pre><code>" .. escape(nd.text, false) .. "</code></pre>"
+  -- local str = string.sub(nd.text, string.find(nd.text, "\n") + 1)
+  return "\n<code>" .. escape(str, false) .. "</code>\n"
+  -- return "<code>" .. escape(nd.text, false) .. "</code>"
 end
 
 Writer.Block.BulletList = function (nd)
@@ -72,7 +78,7 @@ Writer.Blocks = function (nd)
   local function spacing(cur, nxt)
     local function lookup (nd_)
       local space = {
-        ['CodeBlock'] = 0,
+        ['CodeBlock'] = 2,
         ['BlockQuote'] = 0,
         ['BulletList'] = 0,
         ['OrderedList'] = 0,
